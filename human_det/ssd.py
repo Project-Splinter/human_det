@@ -8,7 +8,7 @@ import torchvision
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 
-from humansegV2.det.utils import dboxes300_coco, Encoder
+from .utils import dboxes300_coco, Encoder
 
 # Detection
 class Detection:
