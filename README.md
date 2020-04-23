@@ -43,7 +43,7 @@ def visulization(data):
     bboxes = (bboxes * probs).sum(dim=1, keepdim=True) / probs.sum(dim=1, keepdim=True)
     window = image[0].cpu().numpy().transpose(1, 2, 0)
     window = (window * 0.5 + 0.5) * 255.0
-    window = np.uint8(window)
+    window = np.uint8(window).copy()
     bbox = bboxes[0, 0, 0].cpu().numpy()
     window = cv2.rectangle(
         window, 
@@ -81,7 +81,6 @@ try:
         bboxes, probs = det_engine(data)
         if args.vis:
             visulization([data, bboxes, probs])
-        pass
 except Exception as e:
     print (e)
     del data_stream
