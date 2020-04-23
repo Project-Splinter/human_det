@@ -5,6 +5,8 @@ import numpy as np
 import torch
 
 import humansegV2
+# this can be install by:
+# pip install git+https://github.com/liruilong940607/humanseg --upgrade
 import streamer_pytorch as streamer
 
 parser = argparse.ArgumentParser(description='.')
