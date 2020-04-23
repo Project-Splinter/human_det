@@ -6,7 +6,6 @@ A Single Human Detector runs at **70 FPS** on GV100.
 
 ```
 pip install git+https://github.com/liruilong940607/human_det --upgrade
-
 ```
 
 ## Usage
