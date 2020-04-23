@@ -20,7 +20,7 @@ import argparse
 import numpy as np
 import torch
 
-import humansegV2
+import human_det
 # this can be install by:
 # pip install git+https://github.com/liruilong940607/humanseg --upgrade
 import streamer_pytorch as streamer
@@ -58,7 +58,7 @@ def visulization(data):
     cv2.imshow('window', window)
     cv2.waitKey(30)
 
-det_engine = humansegV2.Detection()
+det_engine = human_det.Detection()
 
 if args.camera:
     data_stream = streamer.CaptureStreamer()
