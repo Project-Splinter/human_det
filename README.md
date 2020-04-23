@@ -30,7 +30,7 @@ import torch
 
 import human_det
 # this can be install by:
-# pip install git+https://github.com/liruilong940607/humanseg --upgrade
+# pip install git+https://github.com/liruilong940607/streamer_pytorch --upgrade
 import streamer_pytorch as streamer
 
 parser = argparse.ArgumentParser(description='.')
