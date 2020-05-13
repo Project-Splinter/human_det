@@ -133,8 +133,8 @@ class Encoder(object):
             self.dboxes = self.dboxes.cpu()
             self.dboxes_xywh = self.dboxes_xywh.cpu()
         else:
-            self.dboxes = self.dboxes.cuda()
-            self.dboxes_xywh = self.dboxes_xywh.cuda()
+            self.dboxes = self.dboxes.to(bboxes_in.device)
+            self.dboxes_xywh = self.dboxes_xywh.to(bboxes_in.device)
 
         bboxes_in = bboxes_in.permute(0, 2, 1)
         scores_in = scores_in.permute(0, 2, 1)
@@ -223,7 +223,7 @@ class Encoder(object):
 
 class DefaultBoxes(object):
     def __init__(self, fig_size, feat_size, steps, scales, aspect_ratios, \
-                       scale_xy=0.1, scale_wh=0.2):
+                       scale_xy=0.1, scale_wh=0.2, device="cuda:0"):
 
         self.feat_size = feat_size
         self.fig_size = fig_size
@@ -257,7 +257,7 @@ class DefaultBoxes(object):
                     cx, cy = (j+0.5)/fk[idx], (i+0.5)/fk[idx]
                     self.default_boxes.append((cx, cy, w, h))
 
-        self.dboxes = torch.tensor(self.default_boxes)
+        self.dboxes = torch.tensor(self.default_boxes).to(device)
         self.dboxes.clamp_(min=0, max=1)
         # For IoU calculation
         self.dboxes_ltrb = self.dboxes.clone()
@@ -279,14 +279,14 @@ class DefaultBoxes(object):
         if order == "xywh": return self.dboxes
 
 
-def dboxes300_coco():
+def dboxes300_coco(device="cuda:0"):
     figsize = 300
     feat_size = [38, 19, 10, 5, 3, 1]
     steps = [8, 16, 32, 64, 100, 300]
     # use the scales here: https://github.com/amdegroot/ssd.pytorch/blob/master/data/config.py
     scales = [21, 45, 99, 153, 207, 261, 315]
     aspect_ratios = [[2], [2, 3], [2, 3], [2, 3], [2], [2]]
-    dboxes = DefaultBoxes(figsize, feat_size, steps, scales, aspect_ratios)
+    dboxes = DefaultBoxes(figsize, feat_size, steps, scales, aspect_ratios, device=device)
     return dboxes
 
 

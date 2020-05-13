@@ -39,7 +39,7 @@ class Detection:
             'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone', 
             'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book',
             'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
-        dboxes = dboxes300_coco()
+        dboxes = dboxes300_coco(device)
         self.encoder = Encoder(dboxes)
 
     def prepare_input(self, tensor):
@@ -72,11 +72,12 @@ class Detection:
         with torch.no_grad():
             # to 300 x 300
             input, H0, W0, scale = self.prepare_input(tensor)
-
+            
             # torchvision.utils.save_image(
             #     input, "../data/det_in_process.jpg", normalize=True, range=(-1, 1))
-
+            
             predictions = self.model(input)
+
             ploc, plabel = [val.float() for val in predictions]
             bboxes, probs = self.encoder.scale_back_batch(ploc, plabel)
 
