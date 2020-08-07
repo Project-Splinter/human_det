@@ -14,7 +14,7 @@ cd human_det
 python setup.py develop
 ```
 
-Note to run `demo.py`, you also need to install (`streamer_pytorch`)[https://github.com/Project-Splinter/streamer_pytorch] through:
+Note to run `demo.py`, you also need to install [streamer_pytorch](https://github.com/Project-Splinter/streamer_pytorch) through:
 ```
 pip install git+https://github.com/Project-Splinter/streamer_pytorch --upgrade
 ```
