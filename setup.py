@@ -4,9 +4,9 @@ INSTALL_REQUIREMENTS = ['numpy', 'torch', 'torchvision', 'Pillow', 'opencv-pytho
 
 setuptools.setup(
     name='human_det',
-    url='https://github.com/liruilong940607/human_det',
+    url='https://github.com/Project-Splinter/human_det',
     description='A Single Human Detector runs at 70 FPS on GV100',    
-    version='0.0.1',
+    version='0.0.2',
     author='Ruilong Li',
     author_email='ruilongl@usc.edu',    
     license='MIT License',
