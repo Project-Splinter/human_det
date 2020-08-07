@@ -36,6 +36,6 @@ python demo.py --camera --vis
 ```
 det_engine = Detection(device="cuda:0", fp16=False)
 tensor = det_engine.load_images(image_files)
-topk_bboxes, topk_probs = det_engine.__call__(tensor, class_names=["person"], topk=1)
+topk_bboxes, topk_probs = det_engine(tensor, class_names=["person"], topk=1)
 ```
 **Note**: `Detection` is not an instance of `nn.Module`, so it won't be trained and updated at all.
